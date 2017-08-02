@@ -11,8 +11,8 @@ import java.util.List;
 
 public class MyDiffCallback extends DiffUtil.Callback {
 
-    List<Person> oldPersons;
-    List<Person> newPersons;
+    private List<Person> oldPersons;
+    private List<Person> newPersons;
 
     public MyDiffCallback(List<Person> oldPersons, List<Person> newPersons) {
         this.oldPersons = oldPersons;

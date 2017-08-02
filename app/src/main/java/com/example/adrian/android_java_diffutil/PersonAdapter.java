@@ -2,7 +2,6 @@ package com.example.adrian.android_java_diffutil;
 
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +41,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.PersonView
     }
 
     public void updateList(ArrayList<Person> newList) {
-        Log.i("PersonAdapter", "updateList() ...");
         DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new MyDiffCallback(this.items, newList));
-
         this.items.clear();
         this.items.addAll(newList);
         diffResult.dispatchUpdatesTo(this);

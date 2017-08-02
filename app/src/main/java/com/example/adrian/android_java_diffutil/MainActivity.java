@@ -13,17 +13,21 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RecyclerView rvList;
+    private Button btnSort;
+    private Button btnReset;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final RecyclerView rvList = (RecyclerView) findViewById(R.id.rvList);
-        final Button btnSort = (Button) findViewById(R.id.btnSort);
+        rvList = (RecyclerView) findViewById(R.id.rvList);
+        btnSort = (Button) findViewById(R.id.btnSort);
+        btnReset = (Button) findViewById(R.id.btnReset);
 
-
-        final List<Person> list = DataProvider.getOldPersonList();
-        final PersonAdapter personAdapter = new PersonAdapter(list);
+        final List<Person> defaultPersonList = DataProvider.getDefaultPersonList();
+        final PersonAdapter personAdapter = new PersonAdapter(defaultPersonList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         rvList.setLayoutManager(mLayoutManager);
         rvList.setItemAnimator(new DefaultItemAnimator());
@@ -37,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Person> defaultList = DataProvider.getDefaultPersonList();
+                personAdapter.updateList((ArrayList<Person>) defaultList);
+            }
+        });
     }
 }
